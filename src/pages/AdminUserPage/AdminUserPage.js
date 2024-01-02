@@ -4,15 +4,14 @@ import { https } from "../../service/Api";
 
 export default function AdminUserPage() {
   const [listUser, setListUser] = useState([]);
-  let fetchUserList = () => {
-    https
-      .get("/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP00")
-      .then((res) => {
-        setListUser(res.data.content); // table antd
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+  let fetchUserList = async () => {
+    try {
+      let res = await https.get("/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP00");
+      setListUser(res.data.content);
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     fetchUserList();
@@ -75,7 +74,7 @@ export default function AdminUserPage() {
   ];
   let handleDelete = (id) => {
     https
-      .delete(`api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${id}`)
+      .delete(`/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${id}`)
       .then((res) => {
         fetchUserList();
         message.success("Success");

@@ -72,16 +72,13 @@ export default function AdminUserPage() {
       ),
     },
   ];
-  let handleDelete = (id) => {
-    https
-      .delete(`/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${id}`)
-      .then((res) => {
-        fetchUserList();
-        message.success("Success");
-      })
-      .catch((err) => {
-        message.error(err.response.data.content);
-      });
+  let handleDelete = async (id) => {
+    try {
+      await https.delete(`/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${id}`);
+      message.success("Success");     
+    } catch (error) {
+      message.error(error.response.data.content);
+    }
   };
   return (
     <div>

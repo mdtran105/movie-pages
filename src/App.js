@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Spinner from './component/Spinner/Spinner';
+import AdminLayout from './layout/AdminLayout';
+import Layout from './layout/Layout';
+import SecureGate from './layout/SecureGate';
+import AdminUserPage from './pages/AdminUserPage/AdminUserPage';
+import DetailPage from './pages/DetailPage/DetailPage';
+import HomePage from './pages/HomePage/HomePage';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Spinner />
+      <BrowserRouter>
+        <Routes>
+
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/detail/:maPhim" element={<DetailPage />} />
+          </Route>
+
+          <Route path='/admin' element={<SecureGate><AdminLayout /></SecureGate>}>
+            <Route path='users' element={<AdminUserPage />} />
+          </Route>
+
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+
+
+      </BrowserRouter>
+    </>
   );
 }
 

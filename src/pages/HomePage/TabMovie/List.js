@@ -12,7 +12,7 @@ export default function List({ dsPhim }) {
               <h2 className="text-medium">
                 {phim.tenPhim}
               </h2>
-              <div className='grid grid-cols-3 gap-5 rounded'>
+              <div className='grid grid-cols-3 gap-5'>
                 {phim.lstLichChieuTheoPhim.map(item => {
                   return <span className='bg-red-500 py-2 px-5 text-white'>{moment(item.ngayChieuGioChieu).format("DD/mm/yyyy  hh:mm")}</span>;
                 })}

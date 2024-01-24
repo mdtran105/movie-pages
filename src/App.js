@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
+  // return <HookPage/>
   return (
     <>
       <Spinner />
@@ -18,14 +19,14 @@ function App() {
 
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
-            <Route path="/detail/:maPhim" element={<DetailPage />} />
+            <Route path="detail/:maPhim" element={<DetailPage />} />
           </Route>
 
-          <Route path='/admin' element={<SecureGate><AdminLayout /></SecureGate>}>
+          <Route path='admin' element={<SecureGate><AdminLayout /></SecureGate>}>
             <Route path='users' element={<AdminUserPage />} />
           </Route>
 
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="login" element={<LoginPage />} />
         </Routes>
 
 

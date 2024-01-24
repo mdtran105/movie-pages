@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
+import adminUserSlice from './redux/adminUserSlice';
 import spinnerSlice from './redux/spinnerSlice';
 import userSlice from './redux/userSlice';
 import reportWebVitals from './reportWebVitals';
@@ -13,6 +14,7 @@ export let store = configureStore({
   reducer: {
     userSlice,
     spinnerSlice,
+    adminUserSlice
   },
 })
 root.render(

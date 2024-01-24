@@ -1,20 +1,35 @@
 import { Space, Table, message } from "antd";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserListAction } from "../../redux/adminUserSlice";
 import { https } from "../../service/Api";
 
 export default function AdminUserPage() {
   const [listUser, setListUser] = useState([]);
+  const { users } = useSelector(state => state.adminUserSlice);
+  // let fetchUserList = () => {
+  //   https
+  //     .get("/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP00")
+  //     .then((res) => {
+  //       setListUser(res.data.content); // table antd
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  let fetchUserList = async () => {
-    try {
-      let res = await https.get("/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP00");
-      setListUser(res.data.content);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // let fetchUserList = async () => {
+  //   try {
+  //     let res = await https.get("/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP00");
+  //     setListUser(res.data.content);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  let dispatch = useDispatch();
   useEffect(() => {
-    fetchUserList();
+    // fetchUserList();
+    dispatch(fetchUserListAction());
   }, []);
   const columns = [
     {
@@ -75,14 +90,18 @@ export default function AdminUserPage() {
   let handleDelete = async (id) => {
     try {
       await https.delete(`/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${id}`);
-      message.success("Success");     
+      dispatch(fetchUserListAction());
+      message.success("Success");
     } catch (error) {
       message.error(error.response.data.content);
     }
   };
   return (
+    // <div>
+    //   <Table columns={columns} dataSource={listUser} />
+    // </div>
     <div>
-      <Table columns={columns} dataSource={listUser} />
+      <Table columns={columns} dataSource={users} />
     </div>
   );
 }

@@ -15,6 +15,7 @@ export default function ListMovie() {
       .catch((err) => {
         console.log(err);
       });
+    return ()=>{console.log("tesssttt")}
   }, []);
 
   let renderList = () => {

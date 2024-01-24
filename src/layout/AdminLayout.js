@@ -3,6 +3,7 @@ import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import MyHeader from '../component/Header/Header';
+
 const { Header, Content, Sider } = Layout;
 const items1 = ['1', '2', '3'].map((key) => ({
   key,

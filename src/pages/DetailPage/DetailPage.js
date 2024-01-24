@@ -20,6 +20,7 @@ export default function DetailPage() {
         // setIsLoading(false);
       });
   }, []);
+  console.log('detail rendering...')
   return (
     <div className='container flex items-center space-x-5'>
       {/* {isLoading && <Spinner />} */}
